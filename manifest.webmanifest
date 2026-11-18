@@ -1,0 +1,17 @@
+{
+  "name": "Трекер дня",
+  "short_name": "Трекер",
+  "description": "Еда, тренировки, вода, сон, рутина и дела — весь день в одном приложении",
+  "lang": "ru",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#07070D",
+  "theme_color": "#07070D",
+  "icons": [
+    {"src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ]
+}
