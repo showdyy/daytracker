@@ -1,5 +1,5 @@
 // Офлайн-режим: файлы приложения кешируются при установке, шрифты — при первом открытии.
-const VERSION = 'v1';
+const VERSION = 'v2';
 const SHELL = ['./', 'index.html', 'core.js', 'foods-data.js', 'manifest.webmanifest', 'icon-192.png', 'icon-512.png', 'icon-180.png'];
 
 self.addEventListener('install', e => {
