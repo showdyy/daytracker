@@ -283,6 +283,7 @@
       habits: habits.map(h => ({id: h.id, name: h.name, slot: h.slot, done: habitDone(h.id, d), streak: streak(h.id, d)})),
       carry: d === today() ? byDay(DB.tasks, addDays(d, -1)).filter(t => !t.done).length : 0,
       week,
+      weekHabits: habits.map(h => ({id: h.id, name: h.name, slot: h.slot, days: week.map(w => habitDone(h.id, w.day))})),
       money: window.Money ? Money.state(DB, today()) : null,
     };
   }

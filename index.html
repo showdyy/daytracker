@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
-<script>(function(){var t='night';try{t=localStorage.getItem('theme')||'night'}catch(e){}document.documentElement.dataset.theme=t})()</script>
+<script>(function(){var t='sky';try{t=localStorage.getItem('theme')||'sky'}catch(e){}document.documentElement.dataset.theme=t})()</script>
 <title>Трекер дня</title>
 <meta name="theme-color" content="#121116">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -531,6 +531,120 @@ body{overscroll-behavior-y:none}
 :root[data-theme="night"] .dock .tb.on{color:var(--gold)}
 :root[data-theme="night"] .rings .tr{opacity:.18}
 :root[data-theme="night"] .th i{box-shadow:0 0 0 1px rgba(240,234,224,.15)}
+
+/* ===================== новый «День» и «Неделя» ===================== */
+.skyarc{display:block;width:100%;height:auto;margin:6px 0 10px;overflow:visible}
+.skyarc .arc{fill:none;stroke:var(--ink-3);stroke-width:1.5;stroke-dasharray:3 5;stroke-linecap:round}
+.skyarc .arc.done{stroke:var(--sun,#FFD27A);stroke-dasharray:none;opacity:.8}
+.skyarc .hz{stroke:var(--stroke);stroke-width:1}
+.hero{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 2px 14px}
+.hero > div:first-child{min-width:0}
+.hnavs{display:flex;align-items:center;gap:6px;font-size:13.5px;font-weight:700;color:var(--ink-2)}
+.hnav{width:26px;height:26px;border-radius:50%;background:var(--glass-2);font-size:16px;line-height:1;color:var(--ink)}
+.hnav:disabled{opacity:.25}
+.hnav.tdy{width:auto;padding:0 10px;font-size:12.5px}
+.hero h1{font-size:34px;font-weight:800;letter-spacing:-.03em;line-height:1.05;margin-top:6px}
+.hero p{color:var(--ink-2);font-size:14px;margin-top:5px}
+.dring{width:78px;height:78px;position:relative;flex:none}
+.dring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.dring circle{fill:none;stroke-width:7;stroke-linecap:round}
+.dring .bg{stroke:var(--glass-2)}
+.dring .fg{stroke:url(#none);stroke:var(--g1);transition:stroke-dashoffset .9s cubic-bezier(.2,.8,.2,1);filter:drop-shadow(0 0 6px var(--grad-glow))}
+.dring b{position:absolute;inset:0;display:grid;place-items:center;font-size:21px;font-weight:800}
+.dring b small{font-size:11px;font-weight:700;color:var(--ink-2);margin-left:1px}
+.pills{display:flex;gap:8px;overflow-x:auto;margin:0 -14px;padding:2px 14px 6px;scrollbar-width:none}
+.pills::-webkit-scrollbar{display:none}
+.pill{position:relative;overflow:hidden;flex:none;display:flex;align-items:baseline;gap:5px;padding:10px 14px;border-radius:999px;background:var(--glass);border:1px solid var(--stroke);box-shadow:var(--card-shadow);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.pill .pf{position:absolute;left:0;top:0;bottom:0;background:var(--glass-3);transition:width .6s}
+.pill > :not(.pf){position:relative}
+.pill .pi{font-size:15px}
+.pill b{font-size:16px;font-weight:800}
+.pill small{font-size:12.5px;color:var(--ink-2);font-weight:600;white-space:nowrap}
+.pill:active{transform:scale(.96)}
+.now{padding:14px 16px 6px;margin-top:12px}
+.now-h{display:flex;gap:12px;align-items:center;margin-bottom:2px}
+.now-h > span{font-size:28px;line-height:1}
+.now-h b{display:block;font-size:17px;font-weight:800}
+.now-h small{color:var(--ink-2);font-size:13px}
+.now .check:first-of-type{border-top:0}
+.tag{font-size:11px;font-weight:700;color:var(--ink-2);background:var(--glass-2);padding:3px 8px;border-radius:8px;margin-right:2px;white-space:nowrap}
+.more{display:block;font-size:13px;color:var(--g1);font-weight:700;padding:6px 0 12px}
+.qgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.qb{display:flex;align-items:center;gap:8px;padding:12px;border-radius:18px;background:var(--glass);border:1px solid var(--stroke);box-shadow:var(--card-shadow);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);font-weight:700;font-size:14px;text-align:left}
+.qb span{font-size:20px}
+.qb:active{transform:scale(.95)}
+.moodc{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 14px;margin-top:10px}
+.moodc small{font-size:13px;color:var(--ink-2);font-weight:700;white-space:nowrap}
+.moodc .moods{margin:0;gap:2px;justify-content:flex-end}
+.feed{position:relative}
+.feed::before{content:"";position:absolute;left:67px;top:20px;bottom:20px;width:2px;background:var(--stroke);border-radius:2px}
+.row.fd{grid-template-columns:40px 12px 1fr auto;gap:10px}
+.fd .t{font-size:13px;color:var(--ink-3);font-weight:600}
+.fd .fdot{width:10px;height:10px;border-radius:50%;position:relative;z-index:1;box-shadow:0 0 0 3px var(--glass)}
+.fd .n{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.wstrip{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;padding:12px 8px}
+.wd{display:flex;flex-direction:column;align-items:center;gap:6px;padding:4px 0;border-radius:14px}
+.wd small{font-size:11.5px;color:var(--ink-3);font-weight:700}
+.wd b{font-size:15px;font-weight:800}
+.wd > span{font-size:15px;min-height:18px;line-height:18px;color:var(--ink-3)}
+.wbar{width:14px;height:64px;border-radius:7px;background:var(--glass-2);position:relative;overflow:hidden}
+.wbar i{position:absolute;left:0;right:0;bottom:0;border-radius:7px;background:var(--grad);transition:height .7s cubic-bezier(.2,.8,.2,1)}
+.wd.td small{color:var(--g1)}
+.wd.sel{background:var(--glass-2)}
+.wins{display:grid;gap:8px;margin-top:10px}
+.win{display:flex;gap:12px;align-items:center;padding:12px 14px}
+.win > span{font-size:22px}
+.win b{display:block;font-size:14.5px;font-weight:700}
+.win small{display:block;font-size:13px;color:var(--ink-2)}
+.mgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mc{padding:12px 12px 10px;display:flex;flex-direction:column}
+.mc > small{font-size:12.5px;color:var(--ink-2);font-weight:700}
+.mc > b{font-size:22px;font-weight:800;margin-top:2px}
+.mc > b span{font-size:13px;color:var(--ink-2);font-weight:600}
+.mc > em{font-style:normal;font-size:11.5px;color:var(--ink-3);margin-bottom:8px}
+.sbars{height:62px;display:grid;grid-template-columns:repeat(7,1fr);gap:4px;align-items:end;position:relative}
+.sbars span{height:100%;display:flex;align-items:flex-end;cursor:pointer}
+.sbars span i{width:100%;border-radius:5px 5px 3px 3px;min-height:0;transition:height .6s}
+.sbars .gl{position:absolute;left:-2px;right:-2px;border-top:1.5px dashed var(--ink-3);z-index:1;pointer-events:none}
+.sdays{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-top:5px}
+.sdays span{font-size:10px;color:var(--ink-3);text-align:center;font-weight:700}
+.sdays span.td{color:var(--g1)}
+.hgrid{display:flex;flex-direction:column;gap:9px}
+.hg-row{display:grid;grid-template-columns:minmax(0,1fr) repeat(7,22px);gap:6px;align-items:center}
+.hg-row > span{font-size:13.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hg-head small{font-size:10.5px;color:var(--ink-3);font-weight:700;text-align:center}
+.hg-head small.td{color:var(--g1)}
+.hg-row i{width:22px;height:22px;border-radius:50%;background:var(--glass-2);box-shadow:inset 0 1px 2px rgba(0,0,0,.2)}
+.hg-row i.on{background:var(--grad);box-shadow:0 0 10px -2px var(--grad-glow)}
+
+/* ===================== тема «Небо»: фон — небо по реальному времени ===================== */
+:root[data-theme="sky"]{
+  --bg:#141238; --glass:rgba(12,12,38,.36); --glass-2:rgba(255,255,255,.1); --glass-3:rgba(255,255,255,.17); --stroke:rgba(255,255,255,.14);
+  --ink:#FFFFFF; --ink-2:rgba(255,255,255,.72); --ink-3:rgba(255,255,255,.46);
+  --kcal:#FFB27A; --water:#8EC5FF; --routine:#7FE0B5; --sleep:#C3A6FF; --gold:#FFD27A; --danger:#FF7A7A;
+  --on-accent:#141238; --sunken:rgba(0,0,0,.18); --dock-bg:rgba(14,14,42,.5); --sheet-bg:rgba(24,22,60,.96);
+  --g1:#FFD27A; --g2:#FF8FA3; --grad-glow:rgba(255,190,130,.45);
+  --aurora-op:0; --card-shadow:0 12px 30px -20px rgba(0,0,0,.7); --toast-bg:#FFFFFF; --toast-ink:#141238;
+  --sun:#FFD27A; --moon:#F3F0FF;
+  color-scheme:dark;
+}
+:root[data-theme="sky"][data-sky="night"]{--skybg:linear-gradient(180deg,#05081A 0%,#10123A 55%,#221547 100%);--star-op:1;--bg:#0B0E28}
+:root[data-theme="sky"][data-sky="dawn"]{--skybg:linear-gradient(180deg,#1A1A48 0%,#4B2B6B 38%,#B65E73 72%,#EE9C76 100%);--star-op:.35;--bg:#2A1F55}
+:root[data-theme="sky"][data-sky="day"]{--skybg:linear-gradient(180deg,#0C2A5C 0%,#1B4F98 48%,#4A8BD6 100%);--star-op:0;--bg:#123A78;--glass:rgba(8,22,60,.32)}
+:root[data-theme="sky"][data-sky="dusk"]{--skybg:linear-gradient(180deg,#141038 0%,#3E1F62 38%,#93396C 70%,#E97A5A 100%);--star-op:.25;--bg:#2A1850}
+:root[data-theme="sky"] .aurora{background:var(--skybg)}
+:root[data-theme="sky"] .aurora::before{content:"";position:absolute;inset:0;opacity:var(--star-op,0);animation:twinkle 7s ease-in-out infinite alternate;
+  background-image:radial-gradient(1.3px 1.3px at 22px 34px,#fff,transparent),radial-gradient(1px 1px at 120px 88px,#fff,transparent),radial-gradient(1.5px 1.5px at 190px 20px,#fff,transparent),
+  radial-gradient(1px 1px at 70px 150px,#fff,transparent),radial-gradient(1.2px 1.2px at 160px 170px,#fff,transparent),radial-gradient(.9px .9px at 240px 120px,#fff,transparent);background-size:260px 220px}
+:root[data-theme="sky"] .aurora::after{content:"";position:absolute;inset:0;background:radial-gradient(120% 60% at 50% 0%,rgba(255,255,255,.06),transparent 60%)}
+@keyframes twinkle{to{opacity:calc(var(--star-op,0) * .45)}}
+:root[data-theme="sky"] .glass{backdrop-filter:blur(22px) saturate(1.4);-webkit-backdrop-filter:blur(22px) saturate(1.4)}
+:root[data-theme="sky"] .fab{background:linear-gradient(135deg,#FFD27A,#FF8FA3);box-shadow:0 8px 24px -6px rgba(255,170,140,.7)}
+:root[data-theme="sky"] .fab svg{stroke:#2A1850}
+:root[data-theme="sky"] .submit,:root[data-theme="sky"] .calc,:root[data-theme="sky"] .cta,:root[data-theme="sky"] .madd button{color:#2A1850}
+:root[data-theme="sky"] .check.done .box{box-shadow:0 0 12px rgba(127,224,181,.45)}
+:root[data-theme="paper"] .skyarc .arc.done,:root[data-theme="cozy"] .skyarc .arc.done,:root[data-theme="light"] .skyarc .arc.done{stroke:var(--g2)}
+:root[data-theme="paper"],:root[data-theme="cozy"],:root[data-theme="light"]{--sun:#F2A13B;--moon:#9C8FC4}
 </style>
 </head>
 <body>
@@ -606,6 +720,7 @@ const nowSlot = () => { const h = +S.now.split(':')[0]; return h >= S.dayStartHo
 /* ---------------- render */
 function render() {
   if (!S) return;
+  { const hh = +S.now.split(':')[0]; document.documentElement.dataset.sky = hh >= 5 && hh < 8 ? 'dawn' : hh >= 8 && hh < 17 ? 'day' : hh >= 17 && hh < 21 ? 'dusk' : 'night' }
   $('#app').innerHTML = `<section class="tab ${tab === 'today' ? 'on' : ''}">${today()}</section>
     <section class="tab ${tab === 'week' ? 'on' : ''}">${week()}</section>
     <section class="tab ${tab === 'money' ? 'on' : ''}">${S.money ? moneyView() : ''}</section>
@@ -624,50 +739,87 @@ function rings(kp, wp, rp) {
   }).join('')}</svg>`;
 }
 
-function today() {
-  const isToday = view === S.today, d = pDate(view), g = S.goals, f = S.food, R = S.habits, T = S.tasks;
-  slot = slot || nowSlot();
-  const rDone = R.filter(x => x.done).length, w = S.water.total;
-  const ns = nowSlot(), order = ['morning', 'day', 'evening'];
-  const nextItem = isToday ? [...R].sort((a, b) => ((order.indexOf(a.slot) - order.indexOf(ns) + 3) % 3) - ((order.indexOf(b.slot) - order.indexOf(ns) + 3) % 3)).find(h => !h.done) : null;
-  const left = g.kcal - f.kcal;
+function skyArc(isToday) {
+  const m = mins(S.now), W = 340, H = 46, x0 = 18, x1 = W - 18;
+  const pt = t => [x0 + t * (x1 - x0), H - 6 - Math.sin(t * Math.PI) * (H - 16)];
+  const path = Array.from({length: 41}, (_, i) => { const [x, y] = pt(i / 40); return `${i ? 'L' : 'M'}${x.toFixed(1)} ${y.toFixed(1)}` }).join('');
+  const night = m < 360 || m >= 1260, t = Math.min(1, Math.max(0, (m - 360) / 900));
+  const [sx, sy] = pt(t);
+  const body = !isToday ? '' : night
+    ? `<mask id="mm"><rect width="${W}" height="${H}" fill="#fff"/><circle cx="${W * .74 + 5}" cy="10" r="8" fill="#000"/></mask><circle cx="${W * .74}" cy="13" r="8" fill="var(--moon,#F3F0FF)" mask="url(#mm)"/>`
+    : `<circle cx="${sx}" cy="${sy}" r="18" fill="url(#sun)"/><circle cx="${sx}" cy="${sy}" r="7" fill="var(--sun,#FFD27A)"/>`;
+  return `<svg class="skyarc" viewBox="0 0 ${W} ${H}" aria-hidden="true"><defs><radialGradient id="sun"><stop offset="0" stop-color="var(--sun,#FFD27A)" stop-opacity=".55"/><stop offset="1" stop-color="var(--sun,#FFD27A)" stop-opacity="0"/></radialGradient></defs>
+    <line x1="0" x2="${W}" y1="${H - 6}" y2="${H - 6}" class="hz"/><path d="${path}" class="arc"/>${!night && isToday ? `<path d="${Array.from({length: Math.max(2, Math.round(t * 40) + 1)}, (_, i) => { const [x, y] = pt(i / 40); return `${i ? 'L' : 'M'}${x.toFixed(1)} ${y.toFixed(1)}` }).join('')}" class="arc done"/>` : ''}${body}</svg>`;
+}
 
+function feed() {
+  const row = (ts, color, ic, name, value, kind, id) => `<div class="row fd" data-row="${kind}:${id}"><span class="t">${ts || ''}</span><span class="fdot" style="background:${color}"></span>
+    <div class="n">${ic} ${esc(name)}</div><span class="v">${esc(value)}</span><button class="x" data-del="${kind}:${id}">Удалить</button></div>`;
+  const items = [
+    ...S.food.items.map(it => ({ts: it.ts, h: row(it.ts, 'var(--kcal)', '🍽', it.name, fmt(it.kcal) + ' ккал', 'food', it.id)})),
+    ...S.water.items.map(it => ({ts: it.ts, h: row(it.ts, 'var(--water)', '💧', 'Вода', it.ml + ' мл', 'water', it.id)})),
+    ...S.workout.items.map(it => ({ts: it.ts, h: row(it.ts, 'var(--routine)', '💪', it.name, it.detail || '', 'workout', it.id)})),
+    ...(S.money ? S.money.recent.filter(x => x.day === view).map(x => ({ts: x.ts, h: row(x.ts, 'var(--gold)', x.ic, x.note, (x.type === 'inc' ? '+' : '−') + fmt(x.amount) + ' ' + S.money.currency, 'money', x.id)})) : []),
+  ];
+  const key = ts => ts ? (mins(ts) - S.dayStartHour * 60 + 1440) % 1440 : 0;
+  items.sort((a, b) => key(b.ts) - key(a.ts));
+  return items.length ? items.map(i => i.h).join('') : `<div class="empty">Здесь появится всё, что запишешь: еда, вода, тренировки и траты</div>`;
+}
+
+function today() {
+  const isToday = view === S.today, d = pDate(view), g = S.goals, f = S.food, R = S.habits, T = S.tasks, M = S.money;
+  const ns = nowSlot(); slot = slot || ns;
+  const rDone = R.filter(x => x.done).length, tDone = T.filter(x => x.done).length;
+  const all = R.length + T.length, done = rDone + tDone, ringP = all ? done / all : 0, C = 2 * Math.PI * 31;
+  const h = +S.now.split(':')[0], left = g.kcal - f.kcal;
+  const greet = !isToday ? `${d.getDate()} ${MONTHS[d.getMonth()]}` : h < 5 ? 'Доброй ночи' : h < 12 ? 'Доброе утро' : h < 17 ? 'Добрый день' : h < 22 ? 'Добрый вечер' : 'Доброй ночи';
+  const sub = !all ? 'Добавь рутину и дела — соберу план дня' : all - done ? `сделано ${done} из ${all} · осталось ${all - done}` : 'всё сделано — ты красавчик ✨';
+  const pill = (attr, ic, val, unit, p) => `<button class="pill" ${attr}><i class="pf" style="width:${Math.min(100, p || 0)}%"></i><span class="pi">${ic}</span><b>${val}</b><small>${unit}</small></button>`;
+  const SL = {morning: {n: 'утро', ic: '☀️'}, day: {n: 'день', ic: '🌤'}, evening: {n: 'вечер', ic: '🌙'}}[ns];
+  const nowItems = [...R.filter(x => x.slot === ns && !x.done).map(x => ({k: 'habit', id: x.id, text: x.name, tag: 'рутина'})),
+    ...T.filter(x => !x.done).map(x => ({k: 'task', id: x.id, text: x.text, tag: 'дело'}))];
+  const spentToday = M ? M.recent.filter(x => x.day === view && x.type === 'exp').reduce((a, x) => a + x.amount, 0) : 0;
   return `${installCard()}
-  <header class="head">
-    <div><small>${WDL[d.getDay()]}</small><h1>${isToday ? 'Сегодня' : `${d.getDate()} ${MONTHS[d.getMonth()]}`}</h1></div>
-    <div class="nav"><button class="glass" id="prev" aria-label="Предыдущий день">‹</button>${isToday ? '' : '<button class="glass today" id="gotoday">Сегодня</button>'}<button class="glass" id="next" aria-label="Следующий день" ${isToday ? 'disabled' : ''}>›</button></div>
+  ${skyArc(isToday)}
+  <header class="hero">
+    <div><small class="hnavs"><button id="prev" class="hnav" aria-label="Предыдущий день">‹</button><span>${WDL[d.getDay()]}, ${d.getDate()} ${MONTHS[d.getMonth()]}</span><button id="next" class="hnav" aria-label="Следующий день" ${isToday ? 'disabled' : ''}>›</button>${isToday ? '' : '<button class="hnav tdy" id="gotoday">сегодня</button>'}</small>
+      <h1>${greet}</h1><p>${sub}</p></div>
+    <div class="dring"><svg viewBox="0 0 76 76"><circle class="bg" cx="38" cy="38" r="31"/><circle class="fg" cx="38" cy="38" r="31" stroke-dasharray="${C}" stroke-dashoffset="${C * (1 - ringP)}"/></svg><b>${Math.round(ringP * 100)}<small>%</small></b></div>
   </header>
 
-  <div class="bento">
-    <div class="w glass rings">${rings(f.kcal / g.kcal, w / g.water, R.length ? rDone / R.length : 0)}
-      <div class="legend">
-        <div><i style="background:var(--kcal)"></i>Калории<b>${Math.round(pct(f.kcal, g.kcal))}%</b></div>
-        <div><i style="background:var(--water)"></i>Вода<b>${Math.round(pct(w, g.water))}%</b></div>
-        <div><i style="background:var(--routine)"></i>Рутина<b>${rDone}/${R.length}</b></div>
-      </div></div>
-    <button class="w glass" ${isToday ? 'data-water="250"' : ''} style="isolation:isolate">
-      <div class="wfill" style="height:${pct(w, g.water)}%"></div>
-      <div class="lbl"><i style="background:var(--water)"></i>Вода</div>
-      <div class="val">${fmt(w / 1000, 2)}<span>/ ${fmt(g.water / 1000, 1)} л</span></div>
-      <div class="hint">${isToday ? 'тап = +250 мл' : ''}</div></button>
-    <button class="w glass" ${isToday ? 'data-open="sleep"' : ''}>
-      <div class="lbl"><i style="background:var(--sleep)"></i>Сон</div>
-      <div class="val">${S.sleep ? fmt(S.sleep, 1) : '—'}<span>ч</span></div>
-      <div class="hint">цель ${fmt(g.sleep, 1)} ч</div></button>
-    <div class="w glass">
-      <div class="lbl">Настроение</div>
-      <div class="moods">${MOODS.map((e, i) => `<button class="${S.mood?.score === i + 1 ? 'on' : ''}" ${isToday ? `data-mood="${i + 1}"` : 'disabled'} aria-label="Настроение ${i + 1}">${e}</button>`).join('')}</div></div>
-    <button class="w glass" ${isToday ? 'data-open="weight"' : ''}>
-      <div class="lbl"><i style="background:var(--gold)"></i>Вес</div>
-      <div class="val">${S.weight.kg ? fmt(S.weight.kg, 1) : '—'}<span>${S.weight.delta != null ? (S.weight.delta > 0 ? '+' : '') + fmt(S.weight.delta, 1) + ' кг' : 'кг'}</span></div></button>
-    ${nextItem ? `<div class="w glass wide next"><div class="t"><div class="lbl"><i style="background:var(--routine)"></i>Следующий шаг · ${SLOTS.find(s => s.k === nextItem.slot).n.toLowerCase()}</div><b>${esc(nextItem.name)}</b></div>
-      <button class="go" data-go="${nextItem.id}">Готово</button></div>` : ''}
+  <div class="pills">
+    ${pill(isToday ? 'data-open="food"' : '', '🔥', fmt(f.kcal), '/ ' + fmt(g.kcal) + ' ккал', pct(f.kcal, g.kcal))}
+    ${pill(isToday ? 'data-water="250"' : '', '💧', fmt(S.water.total / 1000, 2), '/ ' + fmt(g.water / 1000, 1) + ' л', pct(S.water.total, g.water))}
+    ${pill(isToday ? 'data-open="sleep"' : '', '😴', S.sleep ? fmt(S.sleep, 1) : '—', 'ч сна', pct(S.sleep || 0, g.sleep))}
+    ${M ? pill('data-tab-go="money"', '💸', fmt(spentToday), M.currency + (isToday ? ' сегодня' : ''), M.perDayLeft ? pct(spentToday, M.perDayLeft) : 0) : ''}
+    ${pill(isToday ? 'data-open="weight"' : '', '⚖️', S.weight.kg ? fmt(S.weight.kg, 1) : '—', 'кг', 0)}
   </div>
 
-  <div class="h2" id="routine"><h2>Рутина</h2><span>${R.length ? rDone + ' из ' + R.length : ''}</span></div>
+  ${isToday ? `<div class="glass now">
+    <div class="now-h"><span>${SL.ic}</span><div><b>Сейчас ${SL.n}</b><small>${nowItems.length ? `${nowItems.length} ${plural(nowItems.length, 'пункт', 'пункта', 'пунктов')} на эту часть дня` : 'на сейчас всё сделано'}</small></div></div>
+    ${nowItems.slice(0, 4).map(x => check(x.k, x.id, x.text, false, `<span class="tag">${x.tag}</span>`)).join('') || `<div class="empty">${all ? 'Всё на эту часть дня выполнено ✨' : 'Заполни план ниже — здесь появится, что сделать сейчас.'}</div>`}
+    ${nowItems.length > 4 ? `<button class="more" data-jump="routine">и ещё ${nowItems.length - 4} — весь план ↓</button>` : ''}
+  </div>
+
+  <div class="qgrid">
+    <button class="qb" data-open="food"><span>🍽</span>Еда</button>
+    <button class="qb" data-water="250"><span>💧</span>+250 мл</button>
+    <button class="qb" data-open="workout"><span>💪</span>Спорт</button>
+    ${M ? '<button class="qb" data-open="money"><span>💸</span>Трата</button>' : ''}
+    <button class="qb" data-open="sleep"><span>😴</span>Сон</button>
+    <button class="qb" data-open="weight"><span>⚖️</span>Вес</button>
+  </div>` : ''}
+
+  <div class="glass moodc"><small>${isToday ? 'Как ты сегодня?' : 'Настроение'}</small>
+    <div class="moods">${MOODS.map((e, i) => `<button class="${S.mood?.score === i + 1 ? 'on' : ''}" ${isToday ? `data-mood="${i + 1}"` : 'disabled'} aria-label="Настроение ${i + 1}">${e}</button>`).join('')}</div></div>
+
+  <div class="h2"><h2>Лента дня</h2><span>тап — удалить</span></div>
+  <div class="glass card feed">${feed()}</div>
+
+  <div class="h2" id="routine"><h2>План</h2><span>${R.length ? rDone + ' из ' + R.length + ' в рутине' : ''}</span></div>
   <div class="glass card">${routine()}</div>
 
-  <div class="h2"><h2>Дела</h2>${S.carry ? `<button id="carry">Перенести со вчера (${S.carry})</button>` : `<span>${T.length ? T.filter(t => t.done).length + ' из ' + T.length : ''}</span>`}</div>
+  <div class="h2"><h2>Дела</h2>${S.carry ? `<button id="carry">Перенести со вчера (${S.carry})</button>` : `<span>${T.length ? tDone + ' из ' + T.length : ''}</span>`}</div>
   <div class="glass card">
     ${T.map(t => check('task', t.id, t.text, t.done)).join('')}
     ${isToday ? `<form class="adder" data-add="task"><input placeholder="Новое дело" maxlength="200" enterkeyhint="done"><button aria-label="Добавить">+</button></form>` : T.length ? '' : '<div class="empty">Дел не было</div>'}
@@ -684,13 +836,7 @@ function today() {
     <div class="rc">${f.items.length ? f.items.map(it => `<div class="rc-row"><span>${esc(it.name)}</span><i></i><b>${fmt(it.kcal)}</b></div>`).join('') : '<div class="rc-empty">чек пока пустой</div>'}
       <div class="rc-row rc-total"><span>ИТОГО</span><i></i><b>${fmt(f.kcal)} ккал</b></div></div>
     ${S.profile.norm ? '' : `<button class="h2" style="margin:12px 0 0;font-size:13.5px;color:var(--water);font-weight:700" data-tab-go="goals">🧮 Посчитать мою норму →</button>`}
-  </div>
-
-  <div class="h2"><h2>Тренировка</h2>${isToday ? '<button data-open="workout">+ Добавить</button>' : ''}</div>
-  <div class="glass card ${S.workout.items.length ? '' : 'pad'}">${workout(isToday)}</div>
-
-  <div class="h2"><h2>Записи</h2><span>тап — удалить</span></div>
-  <div class="glass card">${entries()}</div>`;
+  </div>`;
 }
 
 let deferredInstall = null;
@@ -748,33 +894,58 @@ function entries() {
 }
 
 /* ---------------- week */
+function dayScore(d) {
+  const g = S.goals, parts = [];
+  const active = d.kcal != null || d.water || d.sleep || d.trained || d.tasksDone || d.habitsDone || d.mood;
+  if (!active) return null;
+  if (d.kcal != null) parts.push(Math.max(0, 1 - Math.abs(d.kcal - g.kcal) / g.kcal));
+  if (d.water) parts.push(Math.min(1, d.water / g.water));
+  if (d.sleep) parts.push(Math.min(1, d.sleep / g.sleep));
+  if (d.habitsTotal) parts.push(d.habitsDone / d.habitsTotal);
+  if (d.tasksTotal) parts.push(d.tasksDone / d.tasksTotal);
+  if (d.trained) parts.push(1);
+  return parts.length ? parts.reduce((a, b) => a + b, 0) / parts.length : null;
+}
 function week() {
-  const W = S.week, g = S.goals;
-  const cell = (has, ratio, label, t, c) => `<div class="c ${has ? '' : 'none'}" style="--hc:var(${c});--o:${has ? (.25 + Math.min(1, ratio) * .6).toFixed(2) : 0}" data-tip="${has ? esc(t) : ''}">${has ? label : '·'}</div>`;
-  const rows = [
-    ['Ккал', d => cell(d.kcal != null, d.kcal / g.kcal, fmt(d.kcal / 1000, 1) + 'k', `<b>${fmt(d.kcal)} ккал</b><small>цель ${fmt(g.kcal)}</small>`, '--kcal')],
-    ['Вода', d => cell(!!d.water, d.water / g.water, fmt(d.water / 1000, 1), `<b>${fmt(d.water)} мл</b>`, '--water')],
-    ['Сон', d => cell(!!d.sleep, d.sleep / g.sleep, fmt(d.sleep, 1), `<b>${fmt(d.sleep, 1)} ч сна</b>`, '--sleep')],
-    ['Трен.', d => cell(d.trained, 1, '✓', '<b>Была тренировка</b>', '--routine')],
-    ['Рутина', d => cell(d.habitsDone > 0, d.habitsDone / (d.habitsTotal || 1), `${d.habitsDone}/${d.habitsTotal}`, `<b>Рутина ${d.habitsDone} из ${d.habitsTotal}</b>`, '--routine')],
-    ['Дела', d => cell(d.tasksTotal > 0, d.tasksDone / (d.tasksTotal || 1), `${d.tasksDone}/${d.tasksTotal}`, `<b>Дела ${d.tasksDone} из ${d.tasksTotal}</b>`, '--water')],
-    ['Настр.', d => cell(!!d.mood, (d.mood || 0) / 5, MOODS[(d.mood || 1) - 1], `<b>Настроение ${d.mood}/5</b>`, '--gold')],
-    ...(S.money ? [['Траты', d => cell(!!d.spent, S.money.budget ? d.spent / (S.money.budget / 30) : .6, d.spent >= 1000 ? fmt(d.spent / 1000, 1) + 'k' : fmt(d.spent), `<b>${fmt(d.spent)} ${S.money.currency}</b><small>потрачено за день</small>`, '--kcal')]] : []),
-  ];
-  const avg = k => { const xs = W.map(d => d[k]).filter(v => v != null); return xs.length ? xs.reduce((a, b) => a + b, 0) / xs.length : null };
-  const rtot = W.reduce((a, d) => a + d.habitsTotal, 0), rdone = W.reduce((a, d) => a + d.habitsDone, 0);
-  const a = {kcal: avg('kcal'), water: avg('water'), sleep: avg('sleep')};
-  const f = pDate(W[0].day), l = pDate(W[6].day);
-  return `<header class="head"><div><small>${f.getDate()} ${MON[f.getMonth()]} — ${l.getDate()} ${MON[l.getMonth()]}</small><h1>Неделя</h1></div></header>
-    <div class="glass card"><div class="heat"><div></div>${W.map(d => { const dd = pDate(d.day); return `<div class="h ${d.day === S.today ? 'today' : ''}">${['вс','пн','вт','ср','чт','пт','сб'][dd.getDay()]}<br>${d.num}</div>` }).join('')}
-      ${rows.map(([n, fn]) => `<div class="rl">${n}</div>${W.map(fn).join('')}`).join('')}</div></div>
-    <div class="h2"><h2>В среднем</h2></div>
-    <div class="tiles">
-      <div class="stat glass"><small>Калории</small><b>${a.kcal ? fmt(a.kcal) : '—'}</b><span>цель ${fmt(g.kcal)}</span></div>
-      <div class="stat glass"><small>Вода</small><b>${a.water ? fmt(a.water / 1000, 1) + ' л' : '—'}</b><span>цель ${fmt(g.water / 1000, 1)} л</span></div>
-      <div class="stat glass"><small>Сон</small><b>${a.sleep ? fmt(a.sleep, 1) + ' ч' : '—'}</b><span>цель ${fmt(g.sleep, 1)} ч</span></div>
-      <div class="stat glass"><small>Тренировки</small><b>${W.filter(d => d.trained).length} из 7</b><span>рутина ${rtot ? Math.round(rdone / rtot * 100) : 0}%</span></div>
+  const W = S.week, g = S.goals, M = S.money;
+  const scores = W.map(dayScore), valid = scores.filter(x => x != null);
+  const avgScore = valid.length ? valid.reduce((a, b) => a + b, 0) / valid.length : null, C = 2 * Math.PI * 31;
+  const bestI = valid.length ? scores.indexOf(Math.max(...valid)) : -1;
+  const f = pDate(W[0].day), l = pDate(W[6].day), isCur = W[6].day === S.today;
+  const avg = arr => { const xs = arr.filter(v => v != null && v !== 0); return xs.length ? xs.reduce((a, b) => a + b, 0) / xs.length : null };
+  const strip = W.map((d, i) => { const sc = scores[i]; return `<button class="wd ${d.day === view ? 'sel' : ''} ${d.day === S.today ? 'td' : ''}" data-goday="${d.day}" aria-label="${d.wd} ${d.num}">
+      <small>${d.wd}</small><div class="wbar"><i style="height:${sc == null ? 0 : Math.max(8, sc * 100)}%"></i></div><b>${d.num}</b><span>${d.mood ? MOODS[d.mood - 1] : '·'}</span></button>` }).join('');
+  const bars = (vals, goal, color, fv) => {
+    const mx = Math.max(goal || 0, ...vals.map(v => v || 0)) * 1.08 || 1;
+    return `<div class="sbars">${goal ? `<i class="gl" style="bottom:${goal / mx * 100}%"></i>` : ''}${vals.map((v, i) => `<span data-tip="${v ? esc(`<b>${fv(v)}</b><small>${W[i].wd}, ${W[i].num}</small>`) : ''}"><i style="height:${v ? Math.max(5, v / mx * 100) : 0}%;background:${color}"></i></span>`).join('')}</div>
+      <div class="sdays">${W.map(d => `<span class="${d.day === S.today ? 'td' : ''}">${d.wd}</span>`).join('')}</div>`;
+  };
+  const mc = (title, val, unit, sub, chart) => `<div class="glass mc"><small>${title}</small><b>${val}<span>${unit}</span></b><em>${sub}</em>${chart}</div>`;
+  const kc = W.map(d => d.kcal), wa = W.map(d => d.water), sl = W.map(d => d.sleep), sp = W.map(d => d.spent);
+  const HB = S.weekHabits || [];
+  const ins = [];
+  if (bestI >= 0 && valid.length > 1) ins.push(['🏆', `Лучший день — ${WDL[pDate(W[bestI].day).getDay()].toLowerCase()}`, `${Math.round(scores[bestI] * 100)}% целей выполнено`]);
+  const aS = avg(sl); if (aS) ins.push(['😴', aS < g.sleep - .6 ? `Недосып: ${fmt(aS, 1)} ч в среднем` : `Сон в норме: ${fmt(aS, 1)} ч`, aS < g.sleep - .6 ? `на ${fmt(g.sleep - aS, 1)} ч меньше цели — ложись на полчаса раньше` : 'так держать']);
+  const aW = avg(wa); if (aW) ins.push(['💧', aW < g.water * .8 ? `Воды маловато: ${fmt(aW / 1000, 1)} л в день` : `Вода в норме: ${fmt(aW / 1000, 1)} л в день`, `цель — ${fmt(g.water / 1000, 1)} л`]);
+  const tr = W.filter(d => d.trained).length; ins.push(['💪', tr ? `Тренировок: ${tr} из 7` : 'Без тренировок', tr >= 3 ? 'отличный ритм' : 'цель — 3 в неделю']);
+  if (HB.length) { const top = [...HB].sort((a, b) => b.days.filter(Boolean).length - a.days.filter(Boolean).length)[0], n = top.days.filter(Boolean).length; if (n >= 3) ins.push(['🔥', `Стабильнее всего — «${esc(top.name)}»`, `${n} из 7 дней`]) }
+  return `<header class="hero">
+      <div><small class="hnavs"><button id="wprev" class="hnav" aria-label="Прошлая неделя">‹</button><span>${f.getDate()} ${MON[f.getMonth()]} — ${l.getDate()} ${MON[l.getMonth()]}</span><button id="wnext" class="hnav" aria-label="Следующая неделя" ${isCur ? 'disabled' : ''}>›</button></small>
+        <h1>Неделя</h1><p>${avgScore == null ? 'Записывай дни — здесь появится итог' : `в среднем ${Math.round(avgScore * 100)}% целей в день`}</p></div>
+      <div class="dring"><svg viewBox="0 0 76 76"><circle class="bg" cx="38" cy="38" r="31"/><circle class="fg" cx="38" cy="38" r="31" stroke-dasharray="${C}" stroke-dashoffset="${C * (1 - (avgScore || 0))}"/></svg><b>${avgScore == null ? '—' : Math.round(avgScore * 100)}<small>${avgScore == null ? '' : '%'}</small></b></div>
+    </header>
+    <div class="glass wstrip">${strip}</div>
+    ${ins.length ? `<div class="wins">${ins.map(([ic, t, d]) => `<div class="glass win"><span>${ic}</span><div><b>${t}</b><small>${d}</small></div></div>`).join('')}</div>` : ''}
+    <div class="h2"><h2>Показатели</h2><span>пунктир — цель</span></div>
+    <div class="mgrid">
+      ${mc('🔥 Калории', avg(kc) ? fmt(avg(kc)) : '—', ' ккал', `в среднем · цель ${fmt(g.kcal)}`, bars(kc, g.kcal, 'var(--kcal)', v => fmt(v) + ' ккал'))}
+      ${mc('💧 Вода', avg(wa) ? fmt(avg(wa) / 1000, 1) : '—', ' л', `в среднем · цель ${fmt(g.water / 1000, 1)}`, bars(wa, g.water, 'var(--water)', v => fmt(v) + ' мл'))}
+      ${mc('😴 Сон', avg(sl) ? fmt(avg(sl), 1) : '—', ' ч', `в среднем · цель ${fmt(g.sleep, 1)}`, bars(sl, g.sleep, 'var(--sleep)', v => fmt(v, 1) + ' ч'))}
+      ${M ? mc('💸 Траты', fmt(sp.reduce((a, b) => a + (b || 0), 0)), ' ' + M.currency, 'за неделю', bars(sp, M.budget ? M.budget / 30 : null, 'var(--gold)', v => fmt(v) + ' ' + M.currency)) : ''}
     </div>
+    ${HB.length ? `<div class="h2"><h2>Привычки</h2><span>${HB.reduce((a, h) => a + h.days.filter(Boolean).length, 0)} отметок</span></div>
+    <div class="glass card pad hgrid"><div class="hg-row hg-head"><span></span>${W.map(d => `<small class="${d.day === S.today ? 'td' : ''}">${d.wd}</small>`).join('')}</div>
+      ${HB.map(h => `<div class="hg-row"><span>${esc(h.name)}</span>${h.days.map(x => `<i class="${x ? 'on' : ''}"></i>`).join('')}</div>`).join('')}</div>` : ''}
     <div class="h2"><h2>Вес</h2></div><div class="glass card pad">${weightChart()}</div>`;
 }
 function weightChart() {
@@ -856,6 +1027,7 @@ const GOALS = [
   {f: 'sleep_goal', k: 'sleep', n: 'Сон', s: 'часов', step: .5},
 ];
 const THEMES = [
+  {k: 'sky', n: 'Небо', bg: 'linear-gradient(180deg,#141038,#93396C 70%,#E97A5A)', g: ['#FFD27A', '#FF9B7A']},
   {k: 'night', n: 'Ночь', bg: '#121116', g: ['#FFB27A', '#FF7A6B']},
   {k: 'paper', n: 'Блокнот', bg: '#F6F2EA', g: ['#F08A5D', '#E5533D']},
   {k: 'light', n: 'Свет', bg: '#F3F4F8', g: ['#3B82F6', '#8B5CF6']},
@@ -875,7 +1047,7 @@ function setTheme(k) {
   applyThemeColors();
 }
 function themePicker() {
-  const cur = document.documentElement.dataset.theme || 'night';
+  const cur = document.documentElement.dataset.theme || 'sky';
   return `<div class="h2"><h2>Оформление</h2></div>
     <div class="glass themes">${THEMES.map(t => `<button class="th ${t.k === cur ? 'on' : ''}" data-theme-set="${t.k}" aria-label="Тема ${t.n}"><i style="background:${t.bg}"><b style="background:linear-gradient(135deg,${t.g[0]},${t.g[1]})"></b></i>${t.n}</button>`).join('')}</div>`;
 }
@@ -993,6 +1165,10 @@ function bind() {
     haptic('medium');
     if (await mutate('/api/profile', {sex: PF.sex, age: PF.age, height: PF.height, weight: PF.weight, activity: PF.activity, goal: PF.goal}, 'Норма рассчитана ✨')) { PF = null; render(); scrollTo({top: 0, behavior: 'smooth'}) }
   });
+  $$('[data-jump]').forEach(b => b.onclick = () => $('#' + b.dataset.jump)?.scrollIntoView({behavior: 'smooth', block: 'start'}));
+  $('#wprev')?.addEventListener('click', () => { haptic('select'); load(shift(view, -7)) });
+  $('#wnext')?.addEventListener('click', () => { haptic('select'); const n = shift(view, 7); load(n > S.today ? S.today : n) });
+  $$('[data-goday]').forEach(b => b.onclick = () => { haptic('select'); tab = 'today'; $$('.dock .tb').forEach(x => x.classList.toggle('on', x.dataset.tab === 'today')); load(b.dataset.goday).then(() => scrollTo(0, 0)) });
   $$('[data-tab-go]').forEach(b => b.onclick = () => { tab = b.dataset.tabGo; $$('.dock .tb').forEach(x => x.classList.toggle('on', x.dataset.tab === tab)); render(); scrollTo(0, 0) });
   $$('[data-tip]').forEach(el => el.onclick = () => { if (!el.dataset.tip) return; const r = el.getBoundingClientRect(); haptic('select'); tip(r.left + r.width / 2, r.top, el.dataset.tip) });
   const wc = $('#wchart');
