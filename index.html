@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
-<script>(function(){var t='light';try{t=localStorage.getItem('theme')||'light'}catch(e){}document.documentElement.dataset.theme=t})()</script>
+<script>(function(){var t='paper';try{t=localStorage.getItem('theme')||'paper'}catch(e){}document.documentElement.dataset.theme=t})()</script>
 <title>Трекер дня</title>
-<meta name="theme-color" content="#07070D">
+<meta name="theme-color" content="#F6F2EA">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -17,7 +17,7 @@
 <script src="core.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=JetBrains+Mono:wght@500;700&family=Nunito:wght@400;600;700;800&family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#07070D;
@@ -219,7 +219,7 @@ body{overscroll-behavior-y:none}
 .stepper button{width:34px;height:34px;border-radius:12px;background:var(--glass-2);font-size:20px;font-weight:700}
 .stepper output{font-size:18px;font-weight:800;min-width:62px;text-align:center}
 .note{color:var(--ink-2);font-size:14px;line-height:1.55;padding:14px 6px}
-.themes{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;padding:14px 10px}
+.themes{display:grid;grid-template-columns:repeat(3,1fr);gap:14px 6px;padding:16px 10px}
 .th{display:flex;flex-direction:column;align-items:center;gap:7px;font-size:12.5px;font-weight:600;color:var(--ink-2)}
 .th i{width:48px;height:48px;border-radius:16px;position:relative;box-shadow:0 0 0 1px var(--stroke);transition:transform .15s}
 .th i b{position:absolute;inset:13px;border-radius:50%}
@@ -299,6 +299,101 @@ body{overscroll-behavior-y:none}
 .gate p{color:var(--ink-2)}
 .skel{height:220px;border-radius:var(--r);margin-top:70px}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ===================== тема «Блокнот»: bullet journal, стикеры, панч-карта, чек ===================== */
+.rc{display:none}
+:root[data-theme="paper"]{
+  --bg:#F6F2EA; --glass:#FFFDF8; --glass-2:rgba(43,42,51,.06); --glass-3:rgba(43,42,51,.1); --stroke:rgba(43,42,51,.09);
+  --ink:#2B2A33; --ink-2:rgba(43,42,51,.62); --ink-3:rgba(43,42,51,.38);
+  --kcal:#EE7B5B; --water:#5E9BD6; --routine:#5FAE70; --sleep:#9B86D6; --gold:#E2A33B; --danger:#D9483B;
+  --on-accent:#FFFFFF; --sunken:rgba(43,42,51,.05); --dock-bg:#FFFDF8; --sheet-bg:#FFFDF8;
+  --g1:#F08A5D; --g2:#E5533D; --grad-glow:rgba(229,83,61,.35);
+  --aurora-op:0; --card-shadow:0 1px 0 rgba(43,42,51,.05),0 14px 26px -18px rgba(90,60,30,.5);
+  --toast-bg:#2B2A33; --toast-ink:#FFFDF8;
+  --butter:#FFF0BC; --sky:#DCEAFB; --lilac:#ECE3FB; --blush:#FCE1DA; --sage:#DFEED6;
+  --hand:'Caveat','Comic Sans MS',cursive; --mono:'JetBrains Mono',ui-monospace,monospace;
+  color-scheme:light;
+}
+:root[data-theme="paper"] body{background-color:var(--bg);background-image:radial-gradient(rgba(43,42,51,.16) 1.1px,transparent 1.6px);background-size:20px 20px;background-attachment:fixed}
+:root[data-theme="paper"] .glass{backdrop-filter:none;-webkit-backdrop-filter:none}
+:root[data-theme="paper"] .head small{font-family:var(--hand);font-size:23px;font-weight:700;color:var(--g2);text-transform:none;letter-spacing:0}
+:root[data-theme="paper"] .head h1{font-family:var(--hand);font-size:46px;font-weight:700;letter-spacing:0;line-height:.95}
+:root[data-theme="paper"] .h2 h2{font-family:var(--hand);font-size:31px;font-weight:700;letter-spacing:0}
+:root[data-theme="paper"] .nav button{background:#FFFDF8;box-shadow:var(--card-shadow)}
+
+/* стикеры-виджеты */
+:root[data-theme="paper"] .bento > :nth-child(1){background:var(--butter)}
+:root[data-theme="paper"] .bento > :nth-child(2){background:var(--sky)}
+:root[data-theme="paper"] .bento > :nth-child(3){background:var(--lilac)}
+:root[data-theme="paper"] .bento > :nth-child(4){background:var(--blush)}
+:root[data-theme="paper"] .bento > :nth-child(5){background:var(--sage)}
+:root[data-theme="paper"] .bento > :nth-child(odd){transform:rotate(-.6deg)}
+:root[data-theme="paper"] .bento > :nth-child(even){transform:rotate(.5deg)}
+:root[data-theme="paper"] .bento > .w:active{transform:scale(.97)}
+:root[data-theme="paper"] .bento .glass{border-color:rgba(43,42,51,.06)}
+:root[data-theme="paper"] .bento > :nth-child(1)::before,
+:root[data-theme="paper"] .bento > .next::before,
+:root[data-theme="paper"] .receipt::before{content:"";position:absolute;top:-3px;left:50%;width:68px;height:17px;transform:translateX(-50%) rotate(-3deg);z-index:2;
+  background:repeating-linear-gradient(45deg,rgba(238,123,91,.42) 0 6px,rgba(238,123,91,.24) 6px 12px);border-radius:2px;pointer-events:none}
+:root[data-theme="paper"] .bento > .next::before{background:repeating-linear-gradient(-45deg,rgba(95,174,112,.42) 0 6px,rgba(95,174,112,.24) 6px 12px);left:18%;transform:translateX(-50%) rotate(4deg)}
+:root[data-theme="paper"] .wfill{background:repeating-linear-gradient(-45deg,rgba(94,155,214,.30) 0 7px,rgba(94,155,214,.18) 7px 14px)}
+:root[data-theme="paper"] .rings .fg{filter:none}
+:root[data-theme="paper"] .rings .tr{opacity:.22}
+:root[data-theme="paper"] .moods button.on{background:rgba(255,255,255,.8)}
+:root[data-theme="paper"] .next{border:2px dashed rgba(43,42,51,.14);background:#FFFDF8}
+:root[data-theme="paper"] .next .go{border-radius:999px}
+
+/* панч-карта: выполненное — пробитая дырка */
+:root[data-theme="paper"] .box{border:2px dashed rgba(43,42,51,.28);background:transparent}
+:root[data-theme="paper"] .check.done .box{border:0;background-color:var(--bg);background-image:radial-gradient(rgba(43,42,51,.16) 1px,transparent 1.5px);background-size:6px 6px;
+  box-shadow:inset 0 3px 4px rgba(43,42,51,.32),inset 0 -1px 0 rgba(255,255,255,.9),0 1px 0 rgba(255,255,255,.9)}
+:root[data-theme="paper"] .check.done .box svg{opacity:0}
+:root[data-theme="paper"] .check.done .txt{text-decoration-thickness:2px;text-decoration-color:rgba(229,83,61,.55)}
+:root[data-theme="paper"] .check + .check{border-top:1px dashed rgba(43,42,51,.12)}
+:root[data-theme="paper"] .streak{font-family:var(--hand);font-size:19px;color:var(--g2);transform:rotate(-5deg);display:inline-block}
+:root[data-theme="paper"] .seg{background:rgba(43,42,51,.06)}
+:root[data-theme="paper"] .seg button.on{background:#FFFDF8;box-shadow:0 1px 3px rgba(43,42,51,.15)}
+
+/* чек питания */
+:root[data-theme="paper"] .receipt{position:relative;border-radius:var(--r) var(--r) 0 0;margin-bottom:10px;overflow:visible}
+:root[data-theme="paper"] .receipt::after{content:"";position:absolute;left:0;right:0;bottom:-9px;height:10px;
+  background:radial-gradient(circle at 9px 0,#FFFDF8 8px,transparent 8.6px) 0 0/18px 10px repeat-x}
+:root[data-theme="paper"] .rc{display:block;font-family:var(--mono);font-size:12.5px;margin-top:14px;padding-top:10px;border-top:2px dashed rgba(43,42,51,.14)}
+:root[data-theme="paper"] .rc-row{display:flex;align-items:baseline;gap:6px;padding:4px 0}
+:root[data-theme="paper"] .rc-row span{max-width:64%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+:root[data-theme="paper"] .rc-row i{flex:1;border-bottom:2px dotted rgba(43,42,51,.22);transform:translateY(-3px)}
+:root[data-theme="paper"] .rc-row b{font-weight:700}
+:root[data-theme="paper"] .rc-total{margin-top:6px;padding-top:9px;border-top:2px dashed rgba(43,42,51,.14);font-weight:700;font-size:13.5px}
+:root[data-theme="paper"] .rc-empty{color:var(--ink-3);padding:4px 0}
+:root[data-theme="paper"] .kc b{font-family:var(--mono);font-size:30px}
+:root[data-theme="paper"] .pbar i{background:repeating-linear-gradient(-45deg,#EE7B5B 0 6px,#F29B7F 6px 12px)}
+:root[data-theme="paper"] .macro{background:rgba(43,42,51,.04);border:1px dashed rgba(43,42,51,.1)}
+
+/* неделя — перфокарта */
+:root[data-theme="paper"] .heat .c{border-radius:50%;height:auto;aspect-ratio:1;font-size:9.5px;background:rgba(43,42,51,.05);box-shadow:inset 0 2px 3px rgba(43,42,51,.14)}
+:root[data-theme="paper"] .heat .c::before{border-radius:50%}
+:root[data-theme="paper"] .stat:nth-child(1){background:var(--butter)}
+:root[data-theme="paper"] .stat:nth-child(2){background:var(--sky)}
+:root[data-theme="paper"] .stat:nth-child(3){background:var(--lilac)}
+:root[data-theme="paper"] .stat:nth-child(4){background:var(--sage)}
+:root[data-theme="paper"] .norm .top b,:root[data-theme="paper"] .stat b,:root[data-theme="paper"] .big{font-family:var(--mono)}
+
+/* док, печать «＋», шторка в линейку */
+:root[data-theme="paper"] .dock{box-shadow:0 12px 28px -12px rgba(90,60,30,.45);border-color:rgba(43,42,51,.08)}
+:root[data-theme="paper"] .dock .tb.on{background:var(--butter);color:var(--ink)}
+:root[data-theme="paper"] .fab{border-radius:50%;width:54px;height:54px;box-shadow:0 0 0 4px #FFFDF8,0 0 0 6px rgba(229,83,61,.45),0 8px 18px -6px rgba(229,83,61,.6);transform:rotate(-8deg)}
+:root[data-theme="paper"] .fab:active{transform:rotate(-8deg) scale(.9)}
+:root[data-theme="paper"] .sheet{box-shadow:0 -10px 30px -12px rgba(90,60,30,.35)}
+:root[data-theme="paper"] .sheet h3{font-family:var(--hand);font-size:32px;font-weight:700}
+:root[data-theme="paper"] .sheet textarea{background:#FFFDF8 repeating-linear-gradient(transparent 0 27px,rgba(94,155,214,.28) 27px 28px);background-attachment:local;line-height:28px;padding:2px 12px 12px;border:1px solid rgba(43,42,51,.1)}
+:root[data-theme="paper"] .pv{background:var(--sage)}
+:root[data-theme="paper"] .pv.bad{background:var(--blush)}
+:root[data-theme="paper"] .types button:not(.on){background:#FFFDF8}
+:root[data-theme="paper"] .toast{border-radius:6px;transform:translate(-50%,-170%) rotate(-1.5deg)}
+:root[data-theme="paper"] .toast.on{transform:translate(-50%,0) rotate(-1.5deg)}
+:root[data-theme="paper"] .opt.on{background:var(--sage);border-color:var(--routine)}
+:root[data-theme="paper"] .norm{background:var(--butter)}
+:root[data-theme="paper"] .h2 button,:root[data-theme="paper"] .receipt button.h2{color:var(--g2)!important}
 </style>
 </head>
 <body>
@@ -438,13 +533,15 @@ function today() {
   </div>
 
   <div class="h2"><h2>Питание</h2>${isToday ? '<button data-open="food">+ Добавить</button>' : ''}</div>
-  <div class="glass card pad">
+  <div class="glass card pad receipt">
     <div class="kc"><b>${fmt(f.kcal)}</b><span>из ${fmt(g.kcal)} ккал · ${left >= 0 ? 'ещё ' + fmt(left) : '+' + fmt(-left)}</span></div>
     <div class="pbar"><i style="width:${pct(f.kcal, g.kcal)}%"></i></div>
     <div class="macros">
       ${[['Белки', f.protein, g.protein, '#FF8A5C'], ['Жиры', f.fat, g.fat, 'var(--gold)'], ['Углеводы', f.carbs, g.carbs, 'var(--water)']].map(([n, v, goal, c]) =>
         `<div class="macro"><small>${n}</small><b>${fmt(v)}<span> / ${fmt(goal)} г</span></b><div class="mb"><i style="width:${pct(v, goal)}%;background:${c}"></i></div></div>`).join('')}
     </div>
+    <div class="rc">${f.items.length ? f.items.map(it => `<div class="rc-row"><span>${esc(it.name)}</span><i></i><b>${fmt(it.kcal)}</b></div>`).join('') : '<div class="rc-empty">чек пока пустой</div>'}
+      <div class="rc-row rc-total"><span>ИТОГО</span><i></i><b>${fmt(f.kcal)} ккал</b></div></div>
     ${S.profile.norm ? '' : `<button class="h2" style="margin:12px 0 0;font-size:13.5px;color:var(--water);font-weight:700" data-tab-go="goals">🧮 Посчитать мою норму →</button>`}
   </div>
 
@@ -568,6 +665,7 @@ const GOALS = [
   {f: 'sleep_goal', k: 'sleep', n: 'Сон', s: 'часов', step: .5},
 ];
 const THEMES = [
+  {k: 'paper', n: 'Блокнот', bg: '#F6F2EA', g: ['#F08A5D', '#E5533D']},
   {k: 'light', n: 'Свет', bg: '#F3F4F8', g: ['#3B82F6', '#8B5CF6']},
   {k: 'aurora', n: 'Аврора', bg: '#07070D', g: ['#7C5CFF', '#FF5C8A']},
   {k: 'cozy', n: 'Уют', bg: '#F5EFE6', g: ['#6F8F72', '#C9714D']},
@@ -585,7 +683,7 @@ function setTheme(k) {
   applyThemeColors();
 }
 function themePicker() {
-  const cur = document.documentElement.dataset.theme || 'light';
+  const cur = document.documentElement.dataset.theme || 'paper';
   return `<div class="h2"><h2>Оформление</h2></div>
     <div class="glass themes">${THEMES.map(t => `<button class="th ${t.k === cur ? 'on' : ''}" data-theme-set="${t.k}" aria-label="Тема ${t.n}"><i style="background:${t.bg}"><b style="background:linear-gradient(135deg,${t.g[0]},${t.g[1]})"></b></i>${t.n}</button>`).join('')}</div>`;
 }
