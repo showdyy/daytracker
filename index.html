@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
-<script>(function(){var t='paper';try{t=localStorage.getItem('theme')||'paper'}catch(e){}document.documentElement.dataset.theme=t})()</script>
+<script>(function(){var t='night';try{t=localStorage.getItem('theme')||'night'}catch(e){}document.documentElement.dataset.theme=t})()</script>
 <title>Трекер дня</title>
-<meta name="theme-color" content="#F6F2EA">
+<meta name="theme-color" content="#121116">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -14,6 +14,7 @@
 <link rel="icon" type="image/png" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-180.png">
 <script src="foods-data.js"></script>
+<script src="money.js"></script>
 <script src="core.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -219,12 +220,48 @@ body{overscroll-behavior-y:none}
 .stepper button{width:34px;height:34px;border-radius:12px;background:var(--glass-2);font-size:20px;font-weight:700}
 .stepper output{font-size:18px;font-weight:800;min-width:62px;text-align:center}
 .note{color:var(--ink-2);font-size:14px;line-height:1.55;padding:14px 6px}
-.themes{display:grid;grid-template-columns:repeat(3,1fr);gap:14px 6px;padding:16px 10px}
+.themes{display:grid;grid-template-columns:repeat(4,1fr);gap:14px 4px;padding:16px 8px}
 .th{display:flex;flex-direction:column;align-items:center;gap:7px;font-size:12.5px;font-weight:600;color:var(--ink-2)}
 .th i{width:48px;height:48px;border-radius:16px;position:relative;box-shadow:0 0 0 1px var(--stroke);transition:transform .15s}
 .th i b{position:absolute;inset:13px;border-radius:50%}
 .th.on{color:var(--ink)}
 .th.on i{box-shadow:0 0 0 2px var(--bg),0 0 0 4px var(--ink);transform:scale(1.04)}
+.mhero .kc b{font-size:34px}
+.msub{font-size:14px;color:var(--ink-2);margin-top:8px}.msub b{color:var(--ink)}
+.mset{margin-top:12px;padding:10px 14px;border-radius:14px;background:var(--glass-2);font-weight:700;font-size:14.5px}
+.mstats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+.mstats div{background:var(--sunken);border-radius:14px;padding:9px 10px}
+.mstats small{display:block;font-size:12px;color:var(--ink-2);font-weight:600}
+.mstats b{font-size:15px;font-weight:800;white-space:nowrap}
+.madd{display:flex;align-items:center;gap:8px;margin-top:10px;padding:8px 8px 8px 16px}
+.madd input{flex:1;min-width:0;background:transparent;border:0;outline:none;font-size:16px;padding:8px 0}
+.madd input::placeholder{color:var(--ink-3)}
+.madd button{width:42px;height:42px;border-radius:14px;background:var(--grad);color:#fff;font-size:24px;font-weight:700;line-height:1;flex:none}
+.tips{display:flex;flex-direction:column;gap:8px}
+.tip-card{display:flex;gap:12px;padding:13px 14px;align-items:flex-start}
+.tip-card .tic{font-size:22px;line-height:1.2}
+.tip-card b{display:block;font-size:15px;font-weight:700;line-height:1.3}
+.tip-card small{display:block;font-size:13.5px;color:var(--ink-2);line-height:1.45;margin-top:3px}
+.tip-card.warn{border-color:color-mix(in oklab,var(--danger) 45%,transparent)}
+.tip-card.ok{border-color:color-mix(in oklab,var(--routine) 45%,transparent)}
+.mcat{display:flex;gap:12px;align-items:center;padding:8px 0}
+.mcat + .mcat{border-top:1px solid var(--stroke)}
+.mic{font-size:22px;width:30px;text-align:center}
+.mcn{flex:1;min-width:0}
+.mcn div{display:flex;justify-content:space-between;gap:8px;font-size:15px}
+.mcn div span{font-weight:700;white-space:nowrap}
+.mcn small{font-size:12px;color:var(--ink-3)}
+.mbar{height:6px;border-radius:3px;background:var(--glass-2);margin:6px 0 4px;overflow:hidden}
+.mbar i{display:block;height:100%;border-radius:3px;transition:width .6s}
+.mday{display:flex;justify-content:space-between;font-size:12.5px;font-weight:700;color:var(--ink-3);text-transform:uppercase;letter-spacing:.04em;padding:14px 0 4px}
+.mday:first-child{padding-top:10px}
+.mrow .t{font-size:20px;min-width:28px}
+.mrow .n small{display:inline;color:var(--ink-3);font-size:12.5px;margin-left:4px}
+.mrow .v.inc{color:var(--routine)}
+.mrow .mx{display:flex;gap:6px;align-items:center;background:transparent;padding:0}
+.mrow .mx select{max-width:150px;background:var(--glass-2);color:var(--ink);border:1px solid var(--stroke);border-radius:10px;padding:6px 8px;font:inherit;font-size:13px}
+.mrow .mx button{background:var(--danger);color:#fff;border-radius:10px;padding:7px 11px;font-size:13px;font-weight:700}
+.mrow.armed .n{opacity:.25}
 .form{display:grid;gap:12px;padding:14px 16px}
 .form label{font-size:12.5px;color:var(--ink-2);font-weight:600;display:block;margin-bottom:6px}
 .trio3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
@@ -394,6 +431,106 @@ body{overscroll-behavior-y:none}
 :root[data-theme="paper"] .opt.on{background:var(--sage);border-color:var(--routine)}
 :root[data-theme="paper"] .norm{background:var(--butter)}
 :root[data-theme="paper"] .h2 button,:root[data-theme="paper"] .receipt button.h2{color:var(--g2)!important}
+
+/* ===================== тема «Ночь»: чёрный скетчбук и гелевые ручки ===================== */
+:root[data-theme="night"]{
+  --bg:#121116; --glass:#1E1D23; --glass-2:rgba(240,234,224,.07); --glass-3:rgba(240,234,224,.12); --stroke:rgba(240,234,224,.09);
+  --ink:#EFE9DF; --ink-2:rgba(239,233,223,.64); --ink-3:rgba(239,233,223,.38);
+  --kcal:#FF9B7A; --water:#7FB6F0; --routine:#86D69A; --sleep:#B9A6F5; --gold:#F5C46B; --danger:#FF6B5E;
+  --on-accent:#121116; --sunken:rgba(240,234,224,.05); --dock-bg:#1E1D23; --sheet-bg:#1E1D23;
+  --g1:#FFB27A; --g2:#FF7A6B; --grad-glow:rgba(255,122,107,.35);
+  --aurora-op:0; --card-shadow:inset 0 1px 0 rgba(255,255,255,.035),0 16px 28px -18px rgba(0,0,0,.9);
+  --toast-bg:#EFE9DF; --toast-ink:#121116;
+  --butter:#29251A; --sky:#18212E; --lilac:#221D30; --blush:#2D1D1D; --sage:#1A281F;
+  --hand:'Caveat','Comic Sans MS',cursive; --mono:'JetBrains Mono',ui-monospace,monospace;
+  color-scheme:dark;
+}
+:root[data-theme="night"] body{background-color:var(--bg);background-image:radial-gradient(rgba(240,234,224,.09) 1.1px,transparent 1.6px);background-size:20px 20px;background-attachment:fixed}
+:root[data-theme="night"] .glass{backdrop-filter:none;-webkit-backdrop-filter:none}
+:root[data-theme="night"] .head small{font-family:var(--hand);font-size:23px;font-weight:700;color:var(--g2);text-transform:none;letter-spacing:0}
+:root[data-theme="night"] .head h1{font-family:var(--hand);font-size:46px;font-weight:700;letter-spacing:0;line-height:.95}
+:root[data-theme="night"] .h2 h2{font-family:var(--hand);font-size:31px;font-weight:700;letter-spacing:0}
+:root[data-theme="night"] .nav button{background:#1E1D23;box-shadow:var(--card-shadow)}
+
+/* стикеры-виджеты */
+:root[data-theme="night"] .bento > :nth-child(1){background:var(--butter)}
+:root[data-theme="night"] .bento > :nth-child(2){background:var(--sky)}
+:root[data-theme="night"] .bento > :nth-child(3){background:var(--lilac)}
+:root[data-theme="night"] .bento > :nth-child(4){background:var(--blush)}
+:root[data-theme="night"] .bento > :nth-child(5){background:var(--sage)}
+:root[data-theme="night"] .bento > :nth-child(odd){transform:rotate(-.6deg)}
+:root[data-theme="night"] .bento > :nth-child(even){transform:rotate(.5deg)}
+:root[data-theme="night"] .bento > .w:active{transform:scale(.97)}
+:root[data-theme="night"] .bento .glass{border-color:rgba(240,234,224,.06)}
+:root[data-theme="night"] .bento > :nth-child(1)::before,
+:root[data-theme="night"] .bento > .next::before,
+:root[data-theme="night"] .receipt::before{content:"";position:absolute;top:-3px;left:50%;width:68px;height:17px;transform:translateX(-50%) rotate(-3deg);z-index:2;
+  background:repeating-linear-gradient(45deg,rgba(238,123,91,.42) 0 6px,rgba(238,123,91,.24) 6px 12px);border-radius:2px;pointer-events:none}
+:root[data-theme="night"] .bento > .next::before{background:repeating-linear-gradient(-45deg,rgba(95,174,112,.42) 0 6px,rgba(95,174,112,.24) 6px 12px);left:18%;transform:translateX(-50%) rotate(4deg)}
+:root[data-theme="night"] .wfill{background:repeating-linear-gradient(-45deg,rgba(127,182,240,.30) 0 7px,rgba(127,182,240,.16) 7px 14px)}
+:root[data-theme="night"] .rings .fg{filter:none}
+:root[data-theme="night"] .rings .tr{opacity:.22}
+:root[data-theme="night"] .moods button.on{background:rgba(255,255,255,.08)}
+:root[data-theme="night"] .next{border:2px dashed rgba(240,234,224,.14);background:#1E1D23}
+:root[data-theme="night"] .next .go{border-radius:999px}
+
+/* панч-карта: выполненное — пробитая дырка */
+:root[data-theme="night"] .box{border:2px dashed rgba(240,234,224,.28);background:transparent}
+:root[data-theme="night"] .check.done .box{border:0;background-color:var(--bg);background-image:radial-gradient(rgba(240,234,224,.16) 1px,transparent 1.5px);background-size:6px 6px;
+  box-shadow:inset 0 3px 5px rgba(0,0,0,.75),inset 0 -1px 0 rgba(255,255,255,.06),0 1px 0 rgba(255,255,255,.06)}
+:root[data-theme="night"] .check.done .box svg{opacity:0}
+:root[data-theme="night"] .check.done .txt{text-decoration-thickness:2px;text-decoration-color:rgba(255,122,107,.6)}
+:root[data-theme="night"] .check + .check{border-top:1px dashed rgba(240,234,224,.12)}
+:root[data-theme="night"] .streak{font-family:var(--hand);font-size:19px;color:var(--g2);transform:rotate(-5deg);display:inline-block}
+:root[data-theme="night"] .seg{background:rgba(240,234,224,.06)}
+:root[data-theme="night"] .seg button.on{background:#1E1D23;box-shadow:0 1px 3px rgba(240,234,224,.15)}
+
+/* чек питания */
+:root[data-theme="night"] .receipt{position:relative;border-radius:var(--r) var(--r) 0 0;margin-bottom:10px;overflow:visible}
+:root[data-theme="night"] .receipt::after{content:"";position:absolute;left:0;right:0;bottom:-9px;height:10px;
+  background:radial-gradient(circle at 9px 0,#1E1D23 8px,transparent 8.6px) 0 0/18px 10px repeat-x}
+:root[data-theme="night"] .rc{display:block;font-family:var(--mono);font-size:12.5px;margin-top:14px;padding-top:10px;border-top:2px dashed rgba(240,234,224,.14)}
+:root[data-theme="night"] .rc-row{display:flex;align-items:baseline;gap:6px;padding:4px 0}
+:root[data-theme="night"] .rc-row span{max-width:64%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+:root[data-theme="night"] .rc-row i{flex:1;border-bottom:2px dotted rgba(240,234,224,.22);transform:translateY(-3px)}
+:root[data-theme="night"] .rc-row b{font-weight:700}
+:root[data-theme="night"] .rc-total{margin-top:6px;padding-top:9px;border-top:2px dashed rgba(240,234,224,.14);font-weight:700;font-size:13.5px}
+:root[data-theme="night"] .rc-empty{color:var(--ink-3);padding:4px 0}
+:root[data-theme="night"] .kc b{font-family:var(--mono);font-size:30px}
+:root[data-theme="night"] .pbar i{background:repeating-linear-gradient(-45deg,#FF9B7A 0 6px,#FFB89E 6px 12px)}
+:root[data-theme="night"] .macro{background:rgba(240,234,224,.04);border:1px dashed rgba(240,234,224,.1)}
+
+/* неделя — перфокарта */
+:root[data-theme="night"] .heat .c{border-radius:50%;height:auto;aspect-ratio:1;font-size:9.5px;background:rgba(240,234,224,.05);box-shadow:inset 0 2px 4px rgba(0,0,0,.55)}
+:root[data-theme="night"] .heat .c::before{border-radius:50%}
+:root[data-theme="night"] .stat:nth-child(1){background:var(--butter)}
+:root[data-theme="night"] .stat:nth-child(2){background:var(--sky)}
+:root[data-theme="night"] .stat:nth-child(3){background:var(--lilac)}
+:root[data-theme="night"] .stat:nth-child(4){background:var(--sage)}
+:root[data-theme="night"] .norm .top b,:root[data-theme="night"] .stat b,:root[data-theme="night"] .big{font-family:var(--mono)}
+
+/* док, печать «＋», шторка в линейку */
+:root[data-theme="night"] .dock{box-shadow:0 12px 28px -12px rgba(0,0,0,.8);border-color:rgba(240,234,224,.08)}
+:root[data-theme="night"] .dock .tb.on{background:var(--butter);color:var(--ink)}
+:root[data-theme="night"] .fab{border-radius:50%;width:54px;height:54px;box-shadow:0 0 0 4px #1E1D23,0 0 0 6px rgba(255,122,107,.5),0 8px 18px -6px rgba(255,122,107,.45);transform:rotate(-8deg)}
+:root[data-theme="night"] .fab:active{transform:rotate(-8deg) scale(.9)}
+:root[data-theme="night"] .sheet{box-shadow:0 -10px 30px -12px rgba(0,0,0,.7)}
+:root[data-theme="night"] .sheet h3{font-family:var(--hand);font-size:32px;font-weight:700}
+:root[data-theme="night"] .sheet textarea{background:#1E1D23 repeating-linear-gradient(transparent 0 27px,rgba(127,182,240,.22) 27px 28px);background-attachment:local;line-height:28px;padding:2px 12px 12px;border:1px solid rgba(240,234,224,.1)}
+:root[data-theme="night"] .pv{background:var(--sage)}
+:root[data-theme="night"] .pv.bad{background:var(--blush)}
+:root[data-theme="night"] .types button:not(.on){background:#1E1D23}
+:root[data-theme="night"] .toast{border-radius:6px;transform:translate(-50%,-170%) rotate(-1.5deg)}
+:root[data-theme="night"] .toast.on{transform:translate(-50%,0) rotate(-1.5deg)}
+:root[data-theme="night"] .opt.on{background:var(--sage);border-color:var(--routine)}
+:root[data-theme="night"] .norm{background:var(--butter)}
+:root[data-theme="night"] .h2 button,:root[data-theme="night"] .receipt button.h2{color:var(--g2)!important}
+
+:root[data-theme="night"] .bento .glass{border-color:rgba(240,234,224,.06)}
+:root[data-theme="night"] .head small{color:var(--g1)}
+:root[data-theme="night"] .dock .tb.on{color:var(--gold)}
+:root[data-theme="night"] .rings .tr{opacity:.18}
+:root[data-theme="night"] .th i{box-shadow:0 0 0 1px rgba(240,234,224,.15)}
 </style>
 </head>
 <body>
@@ -404,6 +541,7 @@ body{overscroll-behavior-y:none}
   <button class="tb on" data-tab="today"><svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="7" height="7" rx="2"/><rect x="13.5" y="3.5" width="7" height="7" rx="2"/><rect x="3.5" y="13.5" width="7" height="7" rx="2"/><rect x="13.5" y="13.5" width="7" height="7" rx="2"/></svg>День</button>
   <button class="fab" id="fab" aria-label="Добавить запись"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
   <button class="tb" data-tab="week"><svg viewBox="0 0 24 24"><path d="M5 19V11M10 19V5M15 19v-6M20 19V9"/></svg>Неделя</button>
+  <button class="tb" data-tab="money" id="moneyTab" hidden><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="3"/><path d="M3 10h18M16 14.5h2"/><path d="M7 6V5a2 2 0 0 1 2-2h8"/></svg>Деньги</button>
   <button class="tb" data-tab="goals"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></svg>Цели</button>
 </nav>
 
@@ -432,6 +570,7 @@ const TYPES = {
   water:   {n: '💧 Вода',       title: 'Вода',          ph: 'Своё количество, мл', presets: [150, 250, 330, 500, 750], unit: ' мл'},
   sleep:   {n: '😴 Сон',        title: 'Сколько спал?', ph: '7.5 или 23:30-07:15', presets: [6, 6.5, 7, 7.5, 8, 8.5, 9], unit: ' ч'},
   weight:  {n: '⚖️ Вес',        title: 'Вес',           ph: 'Например 79.4'},
+  money:   {n: '💸 Траты',      title: 'На что потратил?', ph: 'Кофе 250\nТакси 1 200\n+300 000 зарплата', hint: 'Пиши как в заметках: что и сколько. Категорию определю сам. Доход — с плюсом: «+300 000 зарплата». «5к» = 5000.', multi: true},
 };
 
 let S = null, view = null, tab = 'today', slot = null, sheetType = 'food', pvTimer = null, refocus = null;
@@ -469,7 +608,9 @@ function render() {
   if (!S) return;
   $('#app').innerHTML = `<section class="tab ${tab === 'today' ? 'on' : ''}">${today()}</section>
     <section class="tab ${tab === 'week' ? 'on' : ''}">${week()}</section>
+    <section class="tab ${tab === 'money' ? 'on' : ''}">${S.money ? moneyView() : ''}</section>
     <section class="tab ${tab === 'goals' ? 'on' : ''}">${goals()}</section>`;
+  const mt = $('#moneyTab'); if (mt) mt.hidden = !S.money;
   bind();
   if (refocus) { $(`form[data-add="${refocus}"] input`)?.focus(); refocus = null }
 }
@@ -618,6 +759,7 @@ function week() {
     ['Рутина', d => cell(d.habitsDone > 0, d.habitsDone / (d.habitsTotal || 1), `${d.habitsDone}/${d.habitsTotal}`, `<b>Рутина ${d.habitsDone} из ${d.habitsTotal}</b>`, '--routine')],
     ['Дела', d => cell(d.tasksTotal > 0, d.tasksDone / (d.tasksTotal || 1), `${d.tasksDone}/${d.tasksTotal}`, `<b>Дела ${d.tasksDone} из ${d.tasksTotal}</b>`, '--water')],
     ['Настр.', d => cell(!!d.mood, (d.mood || 0) / 5, MOODS[(d.mood || 1) - 1], `<b>Настроение ${d.mood}/5</b>`, '--gold')],
+    ...(S.money ? [['Траты', d => cell(!!d.spent, S.money.budget ? d.spent / (S.money.budget / 30) : .6, d.spent >= 1000 ? fmt(d.spent / 1000, 1) + 'k' : fmt(d.spent), `<b>${fmt(d.spent)} ${S.money.currency}</b><small>потрачено за день</small>`, '--kcal')]] : []),
   ];
   const avg = k => { const xs = W.map(d => d[k]).filter(v => v != null); return xs.length ? xs.reduce((a, b) => a + b, 0) / xs.length : null };
   const rtot = W.reduce((a, d) => a + d.habitsTotal, 0), rdone = W.reduce((a, d) => a + d.habitsDone, 0);
@@ -655,6 +797,55 @@ function weightChart() {
     </svg>`;
 }
 
+/* ---------------- money */
+const CURRENCIES = ['₸', '₽', '$', '€'];
+function plural(n, a, b, c) { n = Math.abs(n) % 100; const n1 = n % 10; return n > 10 && n < 20 ? c : n1 > 1 && n1 < 5 ? b : n1 === 1 ? a : c }
+const dayLabel = d => d === S.today ? 'Сегодня' : d === shift(S.today, -1) ? 'Вчера' : `${pDate(d).getDate()} ${MON[pDate(d).getMonth()]}`;
+function moneyView() {
+  const M = S.money, c = M.currency, $m = v => `${fmt(v)} ${c}`;
+  const over = M.budget && M.left < 0;
+  const groups = {};
+  for (const x of M.recent) (groups[x.day] = groups[x.day] || []).push(x);
+  return `<header class="head"><div><small>${M.month}</small><h1>Деньги</h1></div></header>
+    <div class="glass card pad mhero">
+      <div class="lbl" style="font-size:13px;color:var(--ink-2);font-weight:600">Потрачено в ${M.monthIn}</div>
+      <div class="kc"><b>${$m(M.spent)}</b>${M.budget ? `<span>из ${$m(M.budget)}</span>` : ''}</div>
+      ${M.budget ? `<div class="pbar"><i style="width:${pct(M.spent, M.budget)}%;${over ? 'background:var(--danger)' : ''}"></i></div>
+        <div class="msub">${over ? `Бюджет превышен на <b>${$m(-M.left)}</b>` : `Осталось <b>${$m(M.left)}</b> · можно <b>${$m(M.perDayLeft)}</b> в день`}</div>`
+        : `<button class="mset" data-money-focus="budget">🎯 Задать бюджет на месяц</button>`}
+      <div class="mstats">
+        <div><small>Сегодня</small><b>${$m(M.todaySpent)}</b></div>
+        <div><small>В день</small><b>${$m(M.perDayAvg || 0)}</b></div>
+        <div><small>Прогноз</small><b>${$m(M.projection || 0)}</b></div>
+      </div>
+    </div>
+    <form class="glass madd" data-add="money"><input placeholder="Кофе 250 · такси 1 200 · +зарплата 300к" maxlength="200" enterkeyhint="done" autocomplete="off"><button aria-label="Записать трату">+</button></form>
+
+    <div class="h2"><h2>Где сэкономить</h2></div>
+    <div class="tips">${M.tips.map(t => `<div class="glass tip-card ${t.warn ? 'warn' : ''} ${t.ok ? 'ok' : ''}"><span class="tic">${t.ic}</span><div><b>${esc(t.t)}</b><small>${esc(t.d)}</small></div></div>`).join('')}</div>
+
+    ${M.cats.length ? `<div class="h2"><h2>Куда уходят</h2><span>${M.cats.length} ${plural(M.cats.length, 'категория', 'категории', 'категорий')}</span></div>
+    <div class="glass card pad">${M.cats.map(k => `<div class="mcat"><span class="mic">${k.ic}</span><div class="mcn"><div><b>${k.n}</b><span>${$m(k.sum)}</span></div>
+      <div class="mbar"><i style="width:${Math.max(3, k.share * 100)}%;background:${k.c}"></i></div><small>${Math.round(k.share * 100)}%${k.prev ? ` · прошлый месяц ${$m(k.prev)}` : ''}</small></div></div>`).join('')}</div>` : ''}
+
+    <div class="h2"><h2>Траты</h2><span>${M.recent.length ? 'тап — изменить' : ''}</span></div>
+    <div class="glass card">${M.recent.length ? Object.entries(groups).map(([day, xs]) => `<div class="mday">${dayLabel(day)}<span>−${$m(xs.filter(x => x.type === 'exp').reduce((a, x) => a + x.amount, 0))}</span></div>` +
+      xs.map(x => `<div class="row mrow" data-row="money:${x.id}"><span class="t">${x.ic}</span><div class="n">${esc(x.note)} <small>${x.catName}</small></div>
+        <span class="v ${x.type === 'inc' ? 'inc' : ''}">${x.type === 'inc' ? '+' : '−'}${$m(x.amount)}</span>
+        <span class="x mx">${x.type === 'exp' ? `<select data-recat="${x.id}" aria-label="Категория">${M.categories.map(cc => `<option value="${cc.k}" ${cc.k === x.cat ? 'selected' : ''}>${cc.ic} ${cc.n}</option>`).join('')}</select>` : ''}<button data-del="money:${x.id}">Удалить</button></span></div>`).join('')).join('')
+      : '<div class="empty">Пока пусто. Запиши первую трату — например «кофе 250».</div>'}</div>
+
+    <div class="h2"><h2>Настройки</h2></div>
+    <div class="glass form">
+      <div class="trio3" style="grid-template-columns:1fr 1fr">
+        <div><label>Бюджет на месяц</label><div class="inp-wrap"><input class="inp" id="mBudget" inputmode="numeric" value="${M.budget || ''}" placeholder="200 000"><span>${c}</span></div></div>
+        <div><label>Доход в месяц</label><div class="inp-wrap"><input class="inp" id="mIncome" inputmode="numeric" value="${M.income || ''}" placeholder="необяз."><span>${c}</span></div></div>
+      </div>
+      <div><label>Валюта</label><div class="seg f">${CURRENCIES.map(x => `<button data-cur="${x}" class="${x === c ? 'on' : ''}">${x}</button>`).join('')}</div></div>
+      <button class="calc" id="mSave">Сохранить</button>
+    </div>`;
+}
+
 /* ---------------- goals */
 const GOALS = [
   {f: 'kcal_goal', k: 'kcal', n: 'Калории', s: 'ккал в день', step: 50},
@@ -665,6 +856,7 @@ const GOALS = [
   {f: 'sleep_goal', k: 'sleep', n: 'Сон', s: 'часов', step: .5},
 ];
 const THEMES = [
+  {k: 'night', n: 'Ночь', bg: '#121116', g: ['#FFB27A', '#FF7A6B']},
   {k: 'paper', n: 'Блокнот', bg: '#F6F2EA', g: ['#F08A5D', '#E5533D']},
   {k: 'light', n: 'Свет', bg: '#F3F4F8', g: ['#3B82F6', '#8B5CF6']},
   {k: 'aurora', n: 'Аврора', bg: '#07070D', g: ['#7C5CFF', '#FF5C8A']},
@@ -683,7 +875,7 @@ function setTheme(k) {
   applyThemeColors();
 }
 function themePicker() {
-  const cur = document.documentElement.dataset.theme || 'paper';
+  const cur = document.documentElement.dataset.theme || 'night';
   return `<div class="h2"><h2>Оформление</h2></div>
     <div class="glass themes">${THEMES.map(t => `<button class="th ${t.k === cur ? 'on' : ''}" data-theme-set="${t.k}" aria-label="Тема ${t.n}"><i style="background:${t.bg}"><b style="background:linear-gradient(135deg,${t.g[0]},${t.g[1]})"></b></i>${t.n}</button>`).join('')}</div>`;
 }
@@ -775,6 +967,10 @@ function bind() {
     window._gt = window._gt || {}; clearTimeout(window._gt[field]);
     window._gt[field] = setTimeout(() => mutate('/api/goal', {field, value: next}, 'Сохранено'), 600);
   });
+  $$('[data-cur]').forEach(b => b.onclick = () => { haptic('select'); mutate('/api/money-cfg', {currency: b.dataset.cur}) });
+  $('#mSave')?.addEventListener('click', () => { haptic('medium'); mutate('/api/money-cfg', {budget: $('#mBudget').value, income: $('#mIncome').value}, 'Сохранено') });
+  $$('[data-money-focus]').forEach(b => b.onclick = () => { const i = $('#mBudget'); i?.scrollIntoView({behavior: 'smooth', block: 'center'}); setTimeout(() => i?.focus(), 400) });
+  $$('[data-recat]').forEach(sel => { sel.onclick = e => e.stopPropagation(); sel.onchange = () => { haptic('select'); mutate('/api/money-cat?day=' + view, {id: +sel.dataset.recat, cat: sel.value}, 'Категория изменена') } });
   $$('[data-theme-set]').forEach(b => b.onclick = () => { haptic('select'); setTheme(b.dataset.themeSet); const y = scrollY; render(); scrollTo(0, y) });
   $('#installBtn')?.addEventListener('click', async () => { if (!deferredInstall) return; deferredInstall.prompt(); await deferredInstall.userChoice.catch(() => {}); deferredInstall = null; render() });
   $('#installHide')?.addEventListener('click', () => { try { localStorage.setItem('install-hidden', '1') } catch (e) {} render() });
@@ -866,7 +1062,7 @@ async function submit() {
   const text = $('#sheetText').value.trim();
   if (!text) return;
   $('#submit').disabled = true;
-  const ok = await mutate('/api/add', {type: sheetType, text}, {food: 'Записано 🍽', workout: 'Тренировка записана 💪', water: 'Вода записана 💧', sleep: 'Сон записан 😴', weight: 'Вес записан'}[sheetType]);
+  const ok = await mutate('/api/add', {type: sheetType, text}, {food: 'Записано 🍽', workout: 'Тренировка записана 💪', water: 'Вода записана 💧', sleep: 'Сон записан 😴', weight: 'Вес записан', money: 'Записал 💸'}[sheetType]);
   if (ok) { if (tab !== 'today') { tab = 'today'; $$('.dock .tb').forEach(x => x.classList.toggle('on', x.dataset.tab === 'today')); render() } closeSheet() }
   else $('#submit').disabled = false;
 }

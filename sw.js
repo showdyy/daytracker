@@ -1,6 +1,6 @@
 // Офлайн-режим: файлы приложения кешируются при установке, шрифты — при первом открытии.
-const VERSION = 'v3';
-const SHELL = ['./', 'index.html', 'core.js', 'foods-data.js', 'manifest.webmanifest', 'icon-192.png', 'icon-512.png', 'icon-180.png'];
+const VERSION = 'v4';
+const SHELL = ['./', 'index.html', 'core.js', 'money.js', 'foods-data.js', 'manifest.webmanifest', 'icon-192.png', 'icon-512.png', 'icon-180.png'];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open('shell-' + VERSION).then(c => c.addAll(SHELL)).then(() => self.skipWaiting()));

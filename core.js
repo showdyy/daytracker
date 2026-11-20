@@ -29,6 +29,7 @@
     profile: {sex: null, age: null, height: null, activity: 1.375, goal: 'keep'},
     food: [], workout: [], water: [], tasks: [], habits: [],
     sleep: {}, weight: {}, mood: {}, habitLog: {},
+    money: [], moneyCfg: {budget: null, income: null, currency: '₸'},
   });
   let DB;
   try { DB = JSON.parse(localStorage.getItem(KEY)) || fresh() } catch (e) { DB = fresh() }
@@ -263,7 +264,8 @@
         sleep: DB.sleep[wd] ?? null, trained: byDay(DB.workout, wd).length > 0,
         tasksDone: t.filter(x => x.done).length, tasksTotal: t.length,
         habitsDone: habits.filter(h => habitDone(h.id, wd)).length, habitsTotal: habits.length,
-        mood: DB.mood[wd]?.score ?? null, weight: DB.weight[wd] ?? null});
+        mood: DB.mood[wd]?.score ?? null, weight: DB.weight[wd] ?? null,
+        spent: window.Money ? Money.dailySpent(DB, wd) || null : null});
     }
     const hist = Object.keys(DB.weight).sort().slice(-60).map(day => ({day, kg: DB.weight[day]}));
     return {
@@ -281,6 +283,7 @@
       habits: habits.map(h => ({id: h.id, name: h.name, slot: h.slot, done: habitDone(h.id, d), streak: streak(h.id, d)})),
       carry: d === today() ? byDay(DB.tasks, addDays(d, -1)).filter(t => !t.done).length : 0,
       week,
+      money: window.Money ? Money.state(DB, today()) : null,
     };
   }
 
@@ -307,6 +310,12 @@
     else if (b.type === 'water') { const ml = waterMl(text); if (ml) out.push({name: 'Вода', value: `${ml} мл`, sub: '', ok: true}) }
     else if (b.type === 'sleep') { const h = parseSleep(text); if (h) out.push({name: 'Сон', value: `${h} ч`, sub: '', ok: true}) }
     else if (b.type === 'weight') { const kg = parseFloatIn(text); if (kg && kg >= 20 && kg <= 400) out.push({name: 'Вес', value: `${kg} кг`, sub: '', ok: true}) }
+    else if (b.type === 'money' && window.Money) for (const line of lines(text)) {
+      const r = Money.parse(line), cur = (DB.moneyCfg || {}).currency || '₸';
+      if (!r) { out.push({name: line.trim(), value: 'нет суммы', sub: 'напиши число: «кофе 250»', ok: false}); continue }
+      const c = Money.catInfo(r.cat);
+      out.push({name: `${c.ic} ${r.note}`, value: `${r.type === 'inc' ? '+' : '−'}${Math.round(r.amount).toLocaleString('ru-RU').replace(/ /g, ' ')} ${cur}`, sub: '', detail: c.n, ok: true});
+    }
     return {items: out};
   }
 
@@ -335,6 +344,13 @@
       const s = +b.score; if (s >= 1 && s <= 5) { DB.mood[d] = Object.assign({}, DB.mood[d], {score: s}); added = 1 }
     } else if (b.type === 'task') {
       for (const line of lines(text)) { DB.tasks.push({id: nid(), day: d, text: line.trim().slice(0, 200), done: false}); added++ }
+    } else if (b.type === 'money' && window.Money) {
+      DB.money = DB.money || [];
+      for (const line of lines(text)) {
+        const r = Money.parse(line);
+        if (r) { DB.money.push(Object.assign({id: nid(), day: d, ts}, r)); added++ }
+      }
+      if (!added) fail('Не нашёл сумму 🤔 Пример: кофе 250');
     } else if (b.type === 'habit') {
       const slot = ['morning', 'day', 'evening'].includes(b.slot) ? b.slot : 'morning';
       for (const line of lines(text)) { DB.habits.push({id: nid(), name: line.trim().slice(0, 100), slot, active: true}); added++ }
@@ -359,8 +375,23 @@
       }
       case '/api/delete': {
         const id = +b.id;
-        if (['food', 'workout', 'water', 'tasks', 'task'].includes(b.kind)) { const k = b.kind === 'task' ? 'tasks' : b.kind; DB[k] = DB[k].filter(x => x.id !== id) }
+        if (['food', 'workout', 'water', 'tasks', 'task', 'money'].includes(b.kind)) { const k = b.kind === 'task' ? 'tasks' : b.kind; DB[k] = DB[k].filter(x => x.id !== id) }
         else if (b.kind === 'habit') { const h = DB.habits.find(x => x.id === id); if (h) h.active = false }
+        save(); return buildState(day);
+      }
+      case '/api/money-cfg': {
+        const cfg = DB.moneyCfg = Object.assign({budget: null, income: null, currency: '₸'}, DB.moneyCfg);
+        if ('currency' in b && ['₸', '₽', '$', '€', '₴', 'сом'].includes(b.currency)) cfg.currency = b.currency;
+        for (const k of ['budget', 'income']) if (k in b) {
+          const raw = String(b[k] ?? '').replace(/[\s  ]/g, '');
+          if (!raw) cfg[k] = null;
+          else { const v = parseFloat(raw.replace(',', '.')); if (!(v >= 0 && v < 1e10)) fail('Нужно число'); cfg[k] = Math.round(v) || null }
+        }
+        save(); return buildState(today());
+      }
+      case '/api/money-cat': {
+        const x = (DB.money || []).find(m => m.id === +b.id);
+        if (x && x.type === 'exp' && window.Money?.CATS.some(c => c.k === b.cat)) x.cat = b.cat;
         save(); return buildState(day);
       }
       case '/api/carry': {
@@ -402,7 +433,7 @@
     if (!data || !Array.isArray(data.food) || !data.goals) throw new Error('Это не файл резервной копии трекера');
     DB = Object.assign(fresh(), data);
     delete DB.app; delete DB.exported;
-    const maxId = Math.max(0, ...['food', 'workout', 'water', 'tasks', 'habits'].flatMap(k => DB[k].map(x => x.id || 0)));
+    const maxId = Math.max(0, ...['food', 'workout', 'water', 'tasks', 'habits', 'money'].flatMap(k => (DB[k] || []).map(x => x.id || 0)));
     DB.seq = Math.max(DB.seq || 1, maxId + 1);
     save();
   }
